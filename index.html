@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Blossom Chat Webapp</title>
+  <link rel='stylesheet' href='style.css' type='text/css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/0.3.16/peer.min.js"></script>
+
+  <script src="chat.js"></script>
+  <script src="callVideo.js"></script>
+
+</head>
+
+<body>
+  <div class="onlineUsersContainer">
+    <div class="userInfo">Welcome <label id="myName">Guest</label> !! <br /><br />
+      My id: <input type="text" placeholder="My peer id" id="txtMyId" style="font-size: 18px;" size="15">
+    </div>
+
+    <div>
+      <ul id="onlineUsers"></ul>
+    </div>
+    <div>
+      <ul id="onlineGroups"></ul>
+    </div>
+    <br />
+    <video id="localStream" width="300px" controls></video>
+    <br />
+    <video id="friendStream" width="300px" controls></video>
+    <br />
+    <div align="center">
+      <input type="text" placeholder="Your friend's peer id" id="txtFriendId" style="font-size: 18px;" size="15">
+      <br />
+      <input type="submit" id="btnGroup" onclick="createGroup()" value="Create group" />
+      <input type="submit" id="btnCall" onclick="callVideo();" value="Call Video" />
+      <input type="submit" id="btnClose" onclick="closeStream();" value="Close Video" />
+    </div>
+    <br /><br />
+
+  </div>
+  <div class="chatContainer">
+    <ul id="messages"></ul>
+    <span id="notifyTyping"></span>
+    <!-- <form id="form" action="" onsubmit="return submitfunction();" >  -->
+    <div id="box">
+        <form action="/dashboard" method="post">
+          <button id="btnFile" class="btn btn-lg upload-btn" type="button">File</button>
+          <input type="file" name="upload" id="upload-input" style="display:none">
+        </form>
+        <input id="m" autocomplete="off" onkeyup="notifyTyping();" placeholder="Type yor message here.." />
+      <input type="submit" id="btnSend" onclick="submitfunction();" value="Send" />
+    </div>
+    <!-- </form> -->
+
+  </div>
+</body>
